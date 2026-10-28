@@ -31,5 +31,5 @@ looks best in windows terminal.
 needs go 1.27, and [inno setup](https://jrsoftware.org/isinfo.php) for the installer
 
 ```
-.\build.ps1 -Version v1.1.0
+.\build.ps1 -Version v1.0.0
 ```
