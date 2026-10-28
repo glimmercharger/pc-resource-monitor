@@ -13,6 +13,7 @@ func main() {
 	themeName := flag.String("theme", "htop", "colour theme: htop, phosphor, amber or c64")
 	interval := flag.Duration("delay", time.Second, "time between updates")
 	once := flag.Bool("once", false, "print a single frame and exit")
+	warmup := flag.Duration("warmup", time.Second, "how long -once collects history before printing")
 	w := flag.Int("width", 120, "frame width for -once")
 	h := flag.Int("height", 40, "frame height for -once")
 	showVersion := flag.Bool("version", false, "print the version and exit")
@@ -26,8 +27,10 @@ func main() {
 	a := newApp(*themeName)
 	if *once {
 		a.s.sample()
-		time.Sleep(time.Second)
-		a.s.sample()
+		for end := time.Now().Add(*warmup); time.Now().Before(end); {
+			time.Sleep(*interval)
+			a.s.sample()
+		}
 		os.Stdout.WriteString(a.draw(*w, *h).render(false))
 		return
 	}
