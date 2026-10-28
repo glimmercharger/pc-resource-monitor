@@ -7,7 +7,12 @@ a retro terminal monitor for windows. shows cpu, temperature, ram, wifi, disk an
 
 ## run it
 
-grab `pc-resource-monitor.exe` from [releases](https://github.com/glimmercharger/pc-resource-monitor/releases) and run it. looks best in windows terminal.
+from [releases](https://github.com/glimmercharger/pc-resource-monitor/releases) grab either:
+
+- `resourcemonitor-setup.exe` - installs it (no admin needed), adds it to the start menu and gives you a `resourcemonitor` command in any terminal
+- `resourcemonitor-portable.exe` - just run it, nothing to install
+
+looks best in windows terminal.
 
 | key | does |
 |---|---|
@@ -23,8 +28,8 @@ grab `pc-resource-monitor.exe` from [releases](https://github.com/glimmercharger
 
 ## build
 
-needs go 1.27
+needs go 1.27, and [inno setup](https://jrsoftware.org/isinfo.php) for the installer
 
 ```
-go build -ldflags "-s -w" -o pc-resource-monitor.exe .
+.\build.ps1 -Version v1.1.0
 ```
